@@ -8,9 +8,10 @@ public class OwnershipCheck implements Handler{
     }
 
     @Override
-    public void handle(User user) throws Exception {
+    public void handle(User user){
         if(!user.currentUserId().equals(user.resourceOwnerId())){
-            throw new Exception("You do not own this resource.");
+            System.out.println("You do not own this resource.");
+            return;
         }
 
         System.out.println("Access granted.");

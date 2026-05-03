@@ -8,14 +8,15 @@ public class RoleCheck implements Handler{
     }
 
     @Override
-    public void handle(User user) throws Exception {
+    public void handle(User user) {
         if(!user.userRole().equals("ADMIN")){
             if (next != null) {
                 System.out.println("Next OwnershipCheck");
 
                 next.handle(user);
             }
-            else throw new Exception("Admin Mode");
+            System.out.println("Admin Mode");
+            return;
         }
     }
 }

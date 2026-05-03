@@ -4,9 +4,10 @@ public class AuthenticationCheck implements Handler{
     private Handler next;
 
     @Override
-    public void handle(User user) throws Exception {
+    public void handle(User user){
         if(!user.isAuthenticated()){
-            throw new Exception("User must be logged in");
+            System.out.println("User must be logged in");
+            return;
         }
         if(next != null) {
             System.out.println("Next RoleCheck");
