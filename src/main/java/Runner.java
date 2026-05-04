@@ -1,7 +1,6 @@
 import chainofresponsibility.*;
 import command.*;
 import iterator.BookShelf;
-import iterator.BookShelfIterator;
 import iterator.Iterator;
 import mediator.Citizen;
 import mediator.MailService;
@@ -10,6 +9,8 @@ import mediator.Resident;
 import memento.Plant;
 import memento.PlantHistory;
 import memento.Season;
+import observer.Channel;
+import observer.Viewer;
 
 void main() {
     //=================Chain of Responsibility================
@@ -105,4 +106,28 @@ void main() {
     myPlant.restore(caretaker.pop());
     System.out.println("Restored to: " + myPlant.getSeason());
     //===================Memento ends============================
+
+    //=========================Observer==========================
+    System.out.println();
+
+    Channel Catalog = new Channel();
+
+    Viewer obs1 = new Viewer("user1");
+    Viewer obs2 = new Viewer("user2");
+
+    Catalog.subscribe(obs1);
+    Catalog.subscribe(obs2);
+
+    Catalog.addVideo("Yay");
+
+    Catalog.unsubscribe(obs1);
+    Catalog.addVideo("Yay");
+
+    //====================Observer ends==========================
+
+    //
+    System.out.println();
+
+    //
+
 }
