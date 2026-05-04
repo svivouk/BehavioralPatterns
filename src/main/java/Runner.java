@@ -17,6 +17,10 @@ import strategy.ElytraMacing;
 import strategy.MaceSpearPvpStrategy;
 import strategy.Player;
 import strategy.SwordPvPStrategy;
+import templatemethod.Admin;
+import templatemethod.CreativeServer;
+import templatemethod.MainServer;
+import templatemethod.MinecraftServer;
 
 void main() {
     //=================Chain of Responsibility================
@@ -148,4 +152,16 @@ void main() {
     player.setStrategy(new MaceSpearPvpStrategy());
     player.duel();
     //========================Strategy===========================
+
+    //=====================TemplateMethod========================
+    System.out.println();
+    var admin = new Admin(new MainServer());
+    admin.start();
+    System.out.println("----------------------------------------------");
+    admin.changeServer(new CreativeServer());
+    admin.start();
+
+
+
+    //=================TemplateMethod ends=======================
 }
