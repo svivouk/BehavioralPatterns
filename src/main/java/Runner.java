@@ -11,6 +11,8 @@ import memento.PlantHistory;
 import memento.Season;
 import observer.Channel;
 import observer.Viewer;
+import state.VampireSpecies;
+import state.VampireState;
 
 void main() {
     //=================Chain of Responsibility================
@@ -125,9 +127,15 @@ void main() {
 
     //====================Observer ends==========================
 
-    //
+    //======================State================================
     System.out.println();
+    var vampire = new VampireSpecies();
+    vampire.Abilities();
+    vampire.hiding();
+    vampire.hiding();
+    vampire.night();
+    vampire.hiding();
+    //======================State ends===========================
 
-    //
 
 }
