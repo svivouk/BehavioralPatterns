@@ -3,6 +3,13 @@ import command.*;
 import iterator.BookShelf;
 import iterator.BookShelfIterator;
 import iterator.Iterator;
+import mediator.Citizen;
+import mediator.MailService;
+import mediator.PostOffice;
+import mediator.Resident;
+import memento.Plant;
+import memento.PlantHistory;
+import memento.Season;
 
 void main() {
     //=================Chain of Responsibility================
@@ -57,4 +64,45 @@ void main() {
         System.out.println(" Book on shelf: " + iterable.next());
     }
     //=====================Iterator ends========================
+
+
+    //====================Mediator==============================
+    System.out.println();
+
+    PostOffice postOffice = new MailService();
+    Citizen Kat = new Resident("Kat", postOffice);
+    Citizen Alice = new Resident("Alice", postOffice);
+
+    postOffice.registerCitizen(Kat);
+    postOffice.registerCitizen(Alice);
+
+    Kat.send("PAck", "Alice");
+    Alice.send("Yay", "Kat");
+    Alice.receive("Lily", "Kat");
+    //====================Mediator ends=========================
+
+    //=======================Memento============================
+    System.out.println();
+
+    Plant myPlant = new Plant();
+    PlantHistory caretaker = new PlantHistory();
+
+    myPlant.setSeason(Season.SPRING);
+    caretaker.push(myPlant.save());
+    System.out.println("Current Season: " + myPlant.getSeason());
+
+    myPlant.setSeason(Season.SUMMER);
+    caretaker.push(myPlant.save());
+
+    System.out.println("Changed to: " + myPlant.getSeason());
+
+    myPlant.setSeason(Season.WINTER);
+    System.out.println("Changed to: " + myPlant.getSeason());
+
+    myPlant.restore(caretaker.pop());
+    System.out.println("Restored to: " + myPlant.getSeason());
+
+    myPlant.restore(caretaker.pop());
+    System.out.println("Restored to: " + myPlant.getSeason());
+    //===================Memento ends============================
 }
