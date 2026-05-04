@@ -13,6 +13,10 @@ import observer.Channel;
 import observer.Viewer;
 import state.VampireSpecies;
 import state.VampireState;
+import strategy.ElytraMacing;
+import strategy.MaceSpearPvpStrategy;
+import strategy.Player;
+import strategy.SwordPvPStrategy;
 
 void main() {
     //=================Chain of Responsibility================
@@ -137,5 +141,11 @@ void main() {
     vampire.hiding();
     //======================State ends===========================
 
-
+    //========================Strategy===========================
+    System.out.println();
+    var player = new Player(new SwordPvPStrategy());
+    player.duel();
+    player.setStrategy(new MaceSpearPvpStrategy());
+    player.duel();
+    //========================Strategy===========================
 }
