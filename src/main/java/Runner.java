@@ -21,6 +21,7 @@ import templatemethod.Admin;
 import templatemethod.CreativeServer;
 import templatemethod.MainServer;
 import templatemethod.MinecraftServer;
+import visitor.*;
 
 void main() {
     //=================Chain of Responsibility================
@@ -160,8 +161,28 @@ void main() {
     System.out.println("----------------------------------------------");
     admin.changeServer(new CreativeServer());
     admin.start();
-
-
-
     //=================TemplateMethod ends=======================
+
+    //=========================Visitor===========================
+    System.out.println();
+    List<Shape> shapes = List.of(
+            new Circle(8),
+            new Rectangle(6, 7),
+            new Rectangle(8, 4),
+            new Circle(3)
+    );
+
+    System.out.println("=== Perimeters ===");
+    ShapeVisitor perimeterCalculator = new PerimeterVisitor();
+    for (Shape shape : shapes) {
+        shape.accept(perimeterCalculator);
+    }
+
+    System.out.println("=== Areas ===");
+    ShapeVisitor areaCalculator = new AreaVisitor();
+    for (Shape shape : shapes) {
+        shape.accept(areaCalculator);
+    }
+
+    //=====================Visitor ends==========================
 }
